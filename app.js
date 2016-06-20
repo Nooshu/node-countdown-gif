@@ -1,11 +1,11 @@
 'use strict';
 
-// Server
+// server
 const express = require('express');
 const app = express();
 const path = require('path');
 
-// Canvas Generator
+// canvas generator
 const CanvasGenerator = require('./canvas-generator');
 
 app.use(express.static('public'));

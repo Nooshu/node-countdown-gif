@@ -19,9 +19,13 @@ var generator = {
     init: function(time, width, height, color, bg, name, cb){
         this.width = width;
         this.height = height;
-        this.bg = bg;
+        this.bg = '#' + bg;
+        this.textColor = '#' + color;
         this.name = name;
-        this.textColor = color;
+        
+        // loop optimisations
+        this.halfWidth = Number(this.width / 2);
+        this.halfHeight = Number(this.height / 2);
         
         this.encoder = new GIFEncoder(this.width, this.height);
         this.canvas = new Canvas(this.width, this.height);
@@ -80,7 +84,8 @@ var generator = {
 
         // if we have a moment duration object
         if(typeof timeResult === 'object'){
-            for(let i = 0; i < 2; i++){
+            console.time("test");
+            for(let i = 0; i < 60; i++){
                 // extract the information we need form the duration
                 let days = timeResult.days().toString();
                 let hours = timeResult.hours().toString();
@@ -97,12 +102,12 @@ var generator = {
                 let string = [days, 'd ', hours, 'h ', minutes, 'm ', seconds, 's'].join('');
                 
                 // paint BG
-                ctx.fillStyle = '#' + this.bg;
+                ctx.fillStyle = this.bg;
                 ctx.fillRect(0, 0, this.width, this.height);
                 
                 // paint text
-                ctx.fillStyle = '#' + this.textColor;
-                ctx.fillText(string, (this.width / 2), (this.height / 2));
+                ctx.fillStyle = this.textColor;
+                ctx.fillText(string, this.halfWidth, this.halfHeight);
                 
                 // add finalised frame to the gif
                 enc.addFrame(ctx);
@@ -110,16 +115,17 @@ var generator = {
                 // remove a second for the next loop
                 timeResult.subtract(1, 'seconds');
             }
+            console.timeEnd("test");
         } else {
             // Date has passed so only using a string
             
             // BG
-            ctx.fillStyle = '#' + this.bg;
+            ctx.fillStyle = this.bg;
             ctx.fillRect(0, 0, this.width, this.height);
             
             // Text
-            ctx.fillStyle = '#' + this.textColor;
-            ctx.fillText(timeResult, (this.width / 2), (this.height / 2));
+            ctx.fillStyle = this.textColor;
+            ctx.fillText(timeResult, this.halfWidth, this.halfHeight);
             enc.addFrame(ctx);
         }
         
