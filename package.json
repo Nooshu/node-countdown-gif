@@ -2,9 +2,10 @@
   "name": "date-gif",
   "version": "1.0.0",
   "description": "Use Node to generate an animated countdown gif.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Matt Hobbs",
   "license": "ISC",
@@ -13,5 +14,8 @@
     "express": "^4.13.4",
     "gifencoder": "^1.0.6",
     "moment": "^2.13.0"
+  },
+  "engines": {
+    "node": "6.0.0"
   }
 }

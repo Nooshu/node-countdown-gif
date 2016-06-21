@@ -5,7 +5,7 @@ const GIFEncoder = require('gifencoder');
 const Canvas = require('canvas');
 const moment = require('moment');
 
-var generator = {
+module.exports = {
     /**
      * Initialise the GIF generation
      * @param {string} time
@@ -16,9 +16,9 @@ var generator = {
      * @param {string} name
      * @param {requestCallback} cb - The callback that is run once complete.
      */
-    init: function(time, width, height, color, bg, name, cb){
-        this.width = width;
-        this.height = height;
+    init: function(time, width=200, height=200, color='ffffff', bg='000000', name='default', cb){
+        this.width = Number(width);
+        this.height = Number(height);
         this.bg = '#' + bg;
         this.textColor = '#' + color;
         this.name = name;
@@ -67,8 +67,17 @@ var generator = {
         let enc = this.encoder;
         let ctx = this.ctx;
         
+        // pipe the image to the filesystem to be written
+        var imageStream = enc
+                .createReadStream()
+                    .pipe(fs.createWriteStream('./public/generated/' + this.name + '.gif'));
+        // once finised, generate or serve
+        imageStream.on('finish', () => {
+            cb();
+        });
+        
         // estimate the font size based on the provided width
-        let fontSize = Math.floor( this.width / 11 ) + 'px';
+        let fontSize = Math.floor(this.width / 11) + 'px';
         let fontFamily = 'Courier New'; // monospace works slightly better
         
         // set the font style
@@ -84,7 +93,6 @@ var generator = {
 
         // if we have a moment duration object
         if(typeof timeResult === 'object'){
-            console.time("test");
             for(let i = 0; i < 60; i++){
                 // extract the information we need form the duration
                 let days = timeResult.days().toString();
@@ -115,7 +123,6 @@ var generator = {
                 // remove a second for the next loop
                 timeResult.subtract(1, 'seconds');
             }
-            console.timeEnd("test");
         } else {
             // Date has passed so only using a string
             
@@ -131,16 +138,5 @@ var generator = {
         
         // finish the gif
         enc.finish();
-        
-        // grab the completed image data
-        let buf = enc.out.getData();
-        
-        // write the file to the system
-        fs.writeFile('./public/generated/' + this.name + '.gif', buf, function (err) {
-            // generate or serve the file
-            cb();
-        });
     }
 };
-
-module.exports = generator;

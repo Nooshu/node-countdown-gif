@@ -10,48 +10,37 @@ const CanvasGenerator = require('./canvas-generator');
 
 app.use(express.static('public'));
 
+// root
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/www/index.html'));
 });
 
+// generate and download the gif
 app.get('/generate', function (req, res) {
-    let time = req.query.time;
+    let {time, width, height, color, bg, name} = req.query;
+
     if(!time){
         throw Error('Time parameter is required.')
     }
     
-    let width = Number(req.query.width) || 200;
-    let height = Number(req.query.height) || 200;
-    let color = req.query.color || 'ffffff';
-    let bg = req.query.bg || '000000';
-    let name = req.query.name || 'default';
-
-    CanvasGenerator.init(time, width, height, color, bg, name, download);
-    
-    function download(){
+    CanvasGenerator.init(time, width, height, color, bg, name, () => {
         let file = __dirname + '/public/generated/' + name + '.gif';
         res.download(file);
-    }
+    });
 });
 
+// serve the gif to a browser
 app.get('/serve', function (req, res) {
-    let time = req.query.time;
+    let {time, width, height, color, bg, name} = req.query;
+
     if(!time){
         throw Error('Time parameter is required.')
     }
-    
-    let width = Number(req.query.width) || 200;
-    let height = Number(req.query.height) || 200;
-    let color = req.query.color || 'ffffff';
-    let bg = req.query.bg || '000000';
-    let name = req.query.name || 'default';
 
-    CanvasGenerator.init(time, width, height, color, bg, name, serve);
-
-    function serve(){
+    CanvasGenerator.init(time, width, height, color, bg, name, () => {
         let file = __dirname + '/public/generated/' + name + '.gif';
         res.sendFile(file);
-    }
+    });
 });
 
 app.listen(process.env.PORT || 3000);
