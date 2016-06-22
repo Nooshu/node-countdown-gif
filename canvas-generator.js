@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const GIFEncoder = require('gifencoder');
 const Canvas = require('canvas');
 const moment = require('moment');
@@ -68,11 +69,14 @@ module.exports = {
     encode: function(timeResult, cb){
         let enc = this.encoder;
         let ctx = this.ctx;
+
+        let tmpDir = path.join(process.cwd(), 'tmp/');
+        let filePath = tmpDir + this.name + '.gif';
         
         // pipe the image to the filesystem to be written
-        var imageStream = enc
+        let imageStream = enc
                 .createReadStream()
-                    .pipe(fs.createWriteStream('./public/generated/' + this.name + '.gif'));
+                    .pipe(fs.createWriteStream(filePath));
         // once finised, generate or serve
         imageStream.on('finish', () => {
             cb();
