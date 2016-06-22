@@ -14,14 +14,16 @@ module.exports = {
      * @param {string} color
      * @param {string} bg
      * @param {string} name
+     * @param {number} frames
      * @param {requestCallback} cb - The callback that is run once complete.
      */
-    init: function(time, width=200, height=200, color='ffffff', bg='000000', name='default', cb){
+    init: function(time, width=200, height=200, color='ffffff', bg='000000', name='default', frames=30, cb){
         this.width = Number(width);
         this.height = Number(height);
         this.bg = '#' + bg;
         this.textColor = '#' + color;
         this.name = name;
+        this.frames = Number(frames);
         
         // loop optimisations
         this.halfWidth = Number(this.width / 2);
@@ -93,7 +95,7 @@ module.exports = {
 
         // if we have a moment duration object
         if(typeof timeResult === 'object'){
-            for(let i = 0; i < 60; i++){
+            for(let i = 0; i < this.frames; i++){
                 // extract the information we need form the duration
                 let days = timeResult.days().toString();
                 let hours = timeResult.hours().toString();

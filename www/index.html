@@ -1,12 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>This is a test</title>
-
-    <link rel="stylesheet" href="css/app.css">
-</head>
-<body>
-    <p>Testing 123</p>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Using Node.js to generate countdown gifs</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="page-header">
+                <h1>Countdown Gif generator <small>Using node</small></h1>
+            </div>
+            
+            <p class="lead">The very simple app I have created allows you to generate a countdown timer animated gif depending on the URL parameters you provide. <a href="https://github.com/Nooshu/node-countdown-gif">View the code</a>.</p>
+            
+            <h2>URL Parameters</h2>
+            <ul>
+                <li><strong>time<sup>*</sup></strong> - Date &amp; time when your countdown will end [e.g. 2016-06-24+20:35]</li>
+                <li><strong>frames</strong> - number of frames (also number of seconds) the countdown will run before looping [defaults to 30]</li>
+                <li><strong>width</strong> - width in pixels [defaults to 200]</li>
+                <li><strong>height</strong> - height in pixels [defaults to 200]</li>
+                <li><strong>bg</strong> - hex colour code for the background [defaults to 000000]</li>
+                <li><strong>color</strong> - hex colour code for the text [defaults to ffffff]</li>
+                <li><strong>name</strong> - filename used for the generated gif [defaults to 'default']</li>
+            </ul>
+            <p><small><sup>*</sup> required.</small></p>
+            
+            <h2>Generate Examples <small>Triggers a download</small></h2>
+            <ul>
+                <li>Basic: <a href="/generate?time=2016-09-24+20:35&name=ex1">/generate?time=2016-09-24+20:35</a></li>
+                <li>Custom dimensions: <a href="/generate?time=2016-09-24+20:35&width=300&height=150&name=ex2">/generate?time=2016-09-24+20:35&width=300&height=150</a></li>
+                <li>Custom colours: <a href="/generate?time=2016-09-24+20:35&bg=028900&color=adff00&name=ex3">/generate?time=2016-09-24+20:35&bg=028900&color=adff00</a></li>
+                <li>Custom name &amp; frames: <a href="/generate?time=2016-09-24+20:35&name=awesome-gif&frames=20&name=ex4">/generate?time=2016-09-24+20:35&name=awesome-gif&frames=20</a></li>
+            </ul>
+            
+            <h2>Serve Examples <small>Display in an image tag</small></h2>
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="/serve?time=2016-09-24+20:35&name=serve1" alt="basic example">
+                        <div class="caption">
+                            <h3>Basic example</h3>
+                            <p>Simple example setting only the date + time.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="/serve?time=2016-09-24+20:35&bg=028900&color=adff00&name=serve2" alt="custom colours">
+                        <div class="caption">
+                            <h3>Custom colours</h3>
+                            <p>Example setting a custom set of colours.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="/serve?time=2016-09-24+20:35&bg=028900&color=adff00&width=200&height=100&name=serve3" alt="custom colours">
+                        <div class="caption">
+                            <h3>Custom dimensions</h3>
+                            <p>Example setting a custom set of dimensions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Under the hood the app uses:</p>
+            <ul>
+                <li><a href="https://nodejs.org/en/blog/release/v6.0.0/">Node.js</a></li>
+                <li><a href="http://expressjs.com/">Express</a></li>
+                <li><a href="https://github.com/Automattic/node-canvas">Node-canvas</a></li>
+                <li><a href="https://github.com/eugeneware/gifencoder">Gifencoder</a></li>
+                <li><a href="http://momentjs.com/">Moment.js</a></li>
+                <li><a href="https://www.heroku.com/">Hosted on Heroku.com</a></li>
+            </ul>
+        </div>
+    </body>
 </html>

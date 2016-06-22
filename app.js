@@ -17,13 +17,13 @@ app.get('/', function (req, res) {
 
 // generate and download the gif
 app.get('/generate', function (req, res) {
-    let {time, width, height, color, bg, name} = req.query;
+    let {time, width, height, color, bg, name, frames} = req.query;
 
     if(!time){
-        throw Error('Time parameter is required.')
+        throw Error('Time parameter is required.');
     }
-    
-    CanvasGenerator.init(time, width, height, color, bg, name, () => {
+
+    CanvasGenerator.init(time, width, height, color, bg, name, frames, () => {
         let file = __dirname + '/public/generated/' + name + '.gif';
         res.download(file);
     });
@@ -31,13 +31,13 @@ app.get('/generate', function (req, res) {
 
 // serve the gif to a browser
 app.get('/serve', function (req, res) {
-    let {time, width, height, color, bg, name} = req.query;
+    let {time, width, height, color, bg, name, frames} = req.query;
 
     if(!time){
-        throw Error('Time parameter is required.')
+        throw Error('Time parameter is required.');
     }
 
-    CanvasGenerator.init(time, width, height, color, bg, name, () => {
+    CanvasGenerator.init(time, width, height, color, bg, name, frames, () => {
         let file = __dirname + '/public/generated/' + name + '.gif';
         res.sendFile(file);
     });
