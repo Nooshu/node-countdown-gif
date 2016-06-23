@@ -5,10 +5,12 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+let tempDir = __dirname + '/tmp/';
+
 // canvas generator
 const CanvasGenerator = require('./canvas-generator');
 
-app.use(express.static('tmp'));
+app.use(express.static(tempDir));
 
 // root
 app.get('/', function (req, res) {
@@ -24,8 +26,7 @@ app.get('/generate', function (req, res) {
     }
 
     CanvasGenerator.init(time, width, height, color, bg, name, frames, () => {
-        let tmpDir = path.join(process.cwd(), 'tmp/');
-        let filePath = tmpDir + name + '.gif';
+        let filePath = tempDir + name + '.gif';
         res.download(filePath);
     });
 });
@@ -39,8 +40,7 @@ app.get('/serve', function (req, res) {
     }
 
     CanvasGenerator.init(time, width, height, color, bg, name, frames, () => {
-        let tmpDir = path.join(process.cwd(), 'tmp/');
-        let filePath = tmpDir + name + '.gif';
+        let filePath = tempDir + name + '.gif';
         res.sendFile(filePath);
     });
 });

@@ -70,12 +70,12 @@ module.exports = {
         let enc = this.encoder;
         let ctx = this.ctx;
 
-        let tmpDir = path.join(process.cwd(), 'tmp/');
-        if (!fs.existsSync(tmpDir)){
-            fs.mkdirSync(tmpDir);
+        let tempDir = __dirname + '/tmp/';
+        if (!fs.existsSync(tempDir)){
+            fs.mkdirSync(tempDir);
         }
         
-        let filePath = tmpDir + this.name + '.gif';
+        let filePath = tempDir + this.name + '.gif';
         
         // pipe the image to the filesystem to be written
         let imageStream = enc
