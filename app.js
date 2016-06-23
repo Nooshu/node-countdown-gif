@@ -6,16 +6,17 @@ const app = express();
 const path = require('path');
 
 const tmpDir = __dirname + '/tmp/';
+const publicDir = __dirname + '/public/';
 
 // canvas generator
 const CountdownGenerator = require('./countdown-generator');
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(publicDir));
 app.use(express.static(tmpDir));
 
 // root
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(publicDir + 'index.html');
 });
 
 // generate and download the gif

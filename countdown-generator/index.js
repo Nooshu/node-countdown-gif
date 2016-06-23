@@ -6,8 +6,6 @@ const GIFEncoder = require('gifencoder');
 const Canvas = require('canvas');
 const moment = require('moment');
 
-const tmpDir = __dirname + '/tmp/';
-
 module.exports = {
     /**
      * Initialise the GIF generation
@@ -71,6 +69,7 @@ module.exports = {
     encode: function(timeResult, cb){
         let enc = this.encoder;
         let ctx = this.ctx;
+        let tmpDir = process.cwd() + '/tmp/';
 
         // create the tmp directory if it doesn't exist
         if (!fs.existsSync(tmpDir)){
