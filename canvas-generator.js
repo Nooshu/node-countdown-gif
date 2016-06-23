@@ -71,6 +71,10 @@ module.exports = {
         let ctx = this.ctx;
 
         let tmpDir = path.join(process.cwd(), 'tmp/');
+        if (!fs.existsSync(tmpDir)){
+            fs.mkdirSync(tmpDir);
+        }
+        
         let filePath = tmpDir + this.name + '.gif';
         
         // pipe the image to the filesystem to be written
