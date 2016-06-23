@@ -6,6 +6,8 @@ const GIFEncoder = require('gifencoder');
 const Canvas = require('canvas');
 const moment = require('moment');
 
+const tmpDir = __dirname + '/tmp/';
+
 module.exports = {
     /**
      * Initialise the GIF generation
@@ -70,12 +72,12 @@ module.exports = {
         let enc = this.encoder;
         let ctx = this.ctx;
 
-        let tempDir = __dirname + '/tmp/';
-        if (!fs.existsSync(tempDir)){
-            fs.mkdirSync(tempDir);
+        // create the tmp directory if it doesn't exist
+        if (!fs.existsSync(tmpDir)){
+            fs.mkdirSync(tmpDir);
         }
         
-        let filePath = tempDir + this.name + '.gif';
+        let filePath = tmpDir + this.name + '.gif';
         
         // pipe the image to the filesystem to be written
         let imageStream = enc

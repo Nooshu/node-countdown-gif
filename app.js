@@ -5,16 +5,16 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-let tempDir = __dirname + '/tmp/';
+const tmpDir = __dirname + '/tmp/';
 
 // canvas generator
-const CanvasGenerator = require('./canvas-generator');
+const CountdownGenerator = require('./countdown-generator');
 
-app.use(express.static(tempDir));
+app.use(express.static(tmpDir));
 
 // root
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/www/index.html'));
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 // generate and download the gif
@@ -25,8 +25,8 @@ app.get('/generate', function (req, res) {
         throw Error('Time parameter is required.');
     }
 
-    CanvasGenerator.init(time, width, height, color, bg, name, frames, () => {
-        let filePath = tempDir + name + '.gif';
+    CountdownGenerator.init(time, width, height, color, bg, name, frames, () => {
+        let filePath = tmpDir + name + '.gif';
         res.download(filePath);
     });
 });
@@ -39,8 +39,8 @@ app.get('/serve', function (req, res) {
         throw Error('Time parameter is required.');
     }
 
-    CanvasGenerator.init(time, width, height, color, bg, name, frames, () => {
-        let filePath = tempDir + name + '.gif';
+    CountdownGenerator.init(time, width, height, color, bg, name, frames, () => {
+        let filePath = tmpDir + name + '.gif';
         res.sendFile(filePath);
     });
 });
