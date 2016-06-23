@@ -10,6 +10,7 @@ const tmpDir = __dirname + '/tmp/';
 // canvas generator
 const CountdownGenerator = require('./countdown-generator');
 
+app.use(express.static(__dirname + '/public'));
 app.use(express.static(tmpDir));
 
 // root
