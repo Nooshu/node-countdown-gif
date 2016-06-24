@@ -97,7 +97,8 @@ module.exports = {
                     .pipe(fs.createWriteStream(filePath));
         // once finised, generate or serve
         imageStream.on('finish', () => {
-            cb();
+            // only execute callback if it is a function
+            typeof cb === 'function' && cb();
         });
         
         // estimate the font size based on the provided width

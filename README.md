@@ -19,7 +19,7 @@ These trigger a download. Change the URL from `/generate` to `/serve` when used 
 * **Basic**: [/generate?time=2016-09-24+20:35](/generate?time=2016-09-24+20:35&name=ex1)
 * **Custom dimensions**: [/generate?time=2016-09-24+20:35&width=300&height=150](/generate?time=2016-09-24+20:35&width=300&height=150&name=ex2)
 * **Custom colours**: [/generate?time=2016-09-24+20:35&bg=028900&color=adff00](/generate?time=2016-09-24+20:35&bg=028900&color=adff00&name=ex3)
-* **Custom name & frames**: [/generate?time=2016-09-24+20:35&name=awesome-gif&frames=20](/generate?time=2016-09-24+20:35&name=awesome-gif&frames=20&name=ex4)
+* **Custom name & frames**: [/generate?time=2016-09-24+20:35&name=awesome-gif&frames=20](/generate?time=2016-09-24+20:35&name=awesome-gif&frames=20)
 
 ## Versions
 
