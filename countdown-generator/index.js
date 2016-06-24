@@ -19,12 +19,14 @@ module.exports = {
      * @param {requestCallback} cb - The callback that is run once complete.
      */
     init: function(time, width=200, height=200, color='ffffff', bg='000000', name='default', frames=30, cb){
-        this.width = Number(width);
-        this.height = Number(height);
+        // Set some sensible upper / lower bounds
+        this.width = this.clamp(width, 150, 500);
+        this.height = this.clamp(height, 150, 500);
+        this.frames = this.clamp(frames, 1, 90);
+        
         this.bg = '#' + bg;
         this.textColor = '#' + color;
         this.name = name;
-        this.frames = Number(frames);
         
         // loop optimisations
         this.halfWidth = Number(this.width / 2);
@@ -39,6 +41,17 @@ module.exports = {
         
         // start the gif encoder
         this.encode(timeResult, cb);
+    },
+    /**
+     * Limit a value between a min / max
+     * @link http://stackoverflow.com/questions/11409895/whats-the-most-elegant-way-to-cap-a-number-to-a-segment
+     * @param number - input number
+     * @param min - minimum value number can have
+     * @param max - maximum value number can have
+     * @returns {number}
+     */
+    clamp: function(number, min, max){
+        return Math.max(min, Math.min(number, max));
     },
     /**
      * Calculate the diffeence between timeString and current time
