@@ -119,7 +119,7 @@ module.exports = {
         // if we have a moment duration object
         if(typeof timeResult === 'object'){
             for(let i = 0; i < this.frames; i++){
-                // extract the information we need form the duration
+                // extract the information we need from the duration
                 let days = Math.floor(timeResult.asDays());
                 let hours = Math.floor(timeResult.asHours() - (days * 24));
                 let minutes = Math.floor(timeResult.asMinutes()) - (days * 24 * 60) - (hours * 60);
