@@ -102,7 +102,7 @@ module.exports = {
         });
         
         // estimate the font size based on the provided width
-        let fontSize = Math.floor(this.width / 11) + 'px';
+        let fontSize = Math.floor(this.width / 12) + 'px';
         let fontFamily = 'Courier New'; // monospace works slightly better
         
         // set the font style
@@ -120,16 +120,16 @@ module.exports = {
         if(typeof timeResult === 'object'){
             for(let i = 0; i < this.frames; i++){
                 // extract the information we need form the duration
-                let days = timeResult.days().toString();
-                let hours = timeResult.hours().toString();
-                let minutes = timeResult.minutes().toString();
-                let seconds = timeResult.seconds().toString();
+                let days = Math.floor(timeResult.asDays());
+                let hours = Math.floor(timeResult.asHours() - (days * 24));
+                let minutes = Math.floor(timeResult.asMinutes()) - (days * 24 * 60) - (hours * 60);
+                let seconds = Math.floor(timeResult.asSeconds()) - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
                 
-                // make sure we have 2 characters in the string
-                days = (days.length == 1) ? '0' + days : days;
-                hours = (hours.length == 1) ? '0' + hours : hours;
-                minutes = (minutes.length == 1) ? '0' + minutes : minutes;
-                seconds = (seconds.length == 1) ? '0' + seconds : seconds;
+                // make sure we have at least 2 characters in the string
+                days = (days.toString().length == 1) ? '0' + days : days;
+                hours = (hours.toString().length == 1) ? '0' + hours : hours;
+                minutes = (minutes.toString().length == 1) ? '0' + minutes : minutes;
+                seconds = (seconds.toString().length == 1) ? '0' + seconds : seconds;
                 
                 // build the date string
                 let string = [days, 'd ', hours, 'h ', minutes, 'm ', seconds, 's'].join('');
