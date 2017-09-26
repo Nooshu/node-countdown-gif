@@ -7,6 +7,8 @@ const path = require('path');
 
 const tmpDir = __dirname + '/tmp/';
 const publicDir = __dirname + '/public/';
+const imagesDir = __dirname + '/images/';
+const defaultBgImage = 'bg-image.jpg';
 
 // canvas generator
 const CountdownGenerator = require('./countdown-generator');
@@ -41,13 +43,16 @@ app.get('/serve', function (req, res) {
         throw Error('Time parameter is required.');
     }
 
-    CountdownGenerator.init(time, width, height, color, bg, name, frames, () => {
+    const imageBgSrc = `${imagesDir}${defaultBgImage}`;
+
+
+    CountdownGenerator.init(time, width, height, color, bg, name, imageBgSrc,  frames, () => {
         let filePath = tmpDir + name + '.gif';
         res.sendFile(filePath);
     });
 });
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 3500, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
