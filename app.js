@@ -23,21 +23,7 @@ app.get('/', function (req, res) {
 
 // generate and download the gif
 app.get('/generate', function (req, res) {
-    let {time, width, height, color, bg, name, frames} = req.query;
-
-    if(!time){
-        throw Error('Time parameter is required.');
-    }
-
-    CountdownGenerator.init(time, width, height, color, bg, name, frames, () => {
-        let filePath = tmpDir + name + '.gif';
-        res.download(filePath);
-    });
-});
-
-// serve the gif to a browser
-app.get('/serve', function (req, res) {
-    let {time, width, height, color, bg, name, frames} = req.query;
+    let {time, width, height, color, bg, name, withImageBg, frames} = req.query;
 
     if(!time){
         throw Error('Time parameter is required.');
@@ -46,7 +32,24 @@ app.get('/serve', function (req, res) {
     const imageBgSrc = `${imagesDir}${defaultBgImage}`;
 
 
-    CountdownGenerator.init(time, width, height, color, bg, name, imageBgSrc,  frames, () => {
+    CountdownGenerator.init(time, width, height, color, bg, name, (withImageBg ? imageBgSrc : null),  frames, () => {
+        let filePath = tmpDir + name + '.gif';
+        res.sendFile(filePath);
+    });
+});
+
+// serve the gif to a browser
+app.get('/serve', function (req, res) {
+    let {time, width, height, color, bg, name, withImageBg, frames} = req.query;
+
+    if(!time){
+        throw Error('Time parameter is required.');
+    }
+
+    const imageBgSrc = `${imagesDir}${defaultBgImage}`;
+
+
+    CountdownGenerator.init(time, width, height, color, bg, name, (withImageBg ? imageBgSrc : null),  frames, () => {
         let filePath = tmpDir + name + '.gif';
         res.sendFile(filePath);
     });

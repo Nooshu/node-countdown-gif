@@ -24,7 +24,7 @@ module.exports = {
         this.height = this.clamp(height, 150, 500);
         this.frames = this.clamp(frames, 1, 90);
 
-        //  this.bg = '#' + bg;
+        this.bg = '#' + bg;
         this.textColor = '#' + color;
         this.name = name;
 
@@ -42,7 +42,7 @@ module.exports = {
         let timeResult = this.time(time);
 
         // start the gif encoder
-        if (imageBgSrc) {
+        if (imageBgSrc !== null) {
             fs.readFile(imageBgSrc, function (err, image) {
                 if (err) throw err;
                 var img = new Canvas.Image;
@@ -149,7 +149,7 @@ module.exports = {
                 // paint BG
                 ctx.fillStyle = this.bg;
                 ctx.fillRect(0, 0, this.width, this.height);
-                if (image) {
+                if (image !== null) {
                     ctx.drawImage(image, 0, 0, this.width, this.height)
                 }
                 // paint text
