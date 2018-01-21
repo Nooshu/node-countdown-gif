@@ -27,3 +27,7 @@ Tested with and designed for:
 
 * node 6.0.0
 * cairo 1.8.6
+
+## License
+
+[MIT](LICENSE)
