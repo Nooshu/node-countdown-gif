@@ -1,9 +1,7 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const GIFEncoder = require('gifencoder');
-const Canvas = require('canvas');
+const {Canvas} = require('canvas');
 const moment = require('moment');
 
 module.exports = {
@@ -31,16 +29,18 @@ module.exports = {
         // loop optimisations
         this.halfWidth = Number(this.width / 2);
         this.halfHeight = Number(this.height / 2);
-        
-        this.encoder = new GIFEncoder(this.width, this.height);
-        this.canvas = new Canvas(this.width, this.height);
+       console.log("time: " + time + "\n\r" + "width: " + width + "\n\r" + "height: " + height + "\n\r" + "frames: " + frames + "\n\r" + "color: " + color + "\n\r" + "cb: " + cb + "\n\r" + "name: " + name);
+        this.encoder = new GIFEncoder(this.width,this.height);
+       // console.log(this.encoder);       
+        this.canvas = new Canvas(this.width,this.height);
         this.ctx = this.canvas.getContext('2d');
         
         // calculate the time difference (if any)
         let timeResult = this.time(time);
-        
+
         // start the gif encoder
         this.encode(timeResult, cb);
+       // console.log(this.encode(timeResult, cb));
     },
     /**
      * Limit a value between a min / max
@@ -83,14 +83,14 @@ module.exports = {
         let enc = this.encoder;
         let ctx = this.ctx;
         let tmpDir = process.cwd() + '/tmp/';
-
+        console.log(tmpDir);
         // create the tmp directory if it doesn't exist
         if (!fs.existsSync(tmpDir)){
             fs.mkdirSync(tmpDir);
         }
         
         let filePath = tmpDir + this.name + '.gif';
-        
+         console.log(filePath);
         // pipe the image to the filesystem to be written
         let imageStream = enc
                 .createReadStream()
@@ -102,11 +102,11 @@ module.exports = {
         });
         
         // estimate the font size based on the provided width
-        let fontSize = Math.floor(this.width / 12) + 'px';
-        let fontFamily = 'Courier New'; // monospace works slightly better
-        
+        let fontSize = Math.floor(this.width / 15) + 'px';
+        let fontFamily = 'Montserrat'; // monospace works slightly better
+        let fontweight = 15+'px';
         // set the font style
-        ctx.font = [fontSize, fontFamily].join(' ');
+        ctx.font = [fontSize, fontFamily,fontweight].join(' ');
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
@@ -131,17 +131,19 @@ module.exports = {
                 minutes = (minutes.toString().length == 1) ? '0' + minutes : minutes;
                 seconds = (seconds.toString().length == 1) ? '0' + seconds : seconds;
                 
+                let heading = ""
                 // build the date string
-                let string = [days, 'd ', hours, 'h ', minutes, 'm ', seconds, 's'].join('');
-                
+                let string = [days, ' day ', hours, ' hour ', minutes, ' min ', seconds, ' sec'].join('');
                 // paint BG
                 ctx.fillStyle = this.bg;
-                ctx.fillRect(0, 0, this.width, this.height);
-                
+              ctx.fillRect(0, 0, this.width, this.height);
+             
+                            
                 // paint text
                 ctx.fillStyle = this.textColor;
                 ctx.fillText(string, this.halfWidth, this.halfHeight);
-                
+
+               
                 // add finalised frame to the gif
                 enc.addFrame(ctx);
                 
@@ -153,8 +155,8 @@ module.exports = {
             
             // BG
             ctx.fillStyle = this.bg;
-            ctx.fillRect(0, 0, this.width, this.height);
-            
+           ctx.fillRect(0, 0, this.width, this.height);
+           
             // Text
             ctx.fillStyle = this.textColor;
             ctx.fillText(timeResult, this.halfWidth, this.halfHeight);
@@ -163,5 +165,6 @@ module.exports = {
         
         // finish the gif
         enc.finish();
+        console.log(enc);
     }
 };

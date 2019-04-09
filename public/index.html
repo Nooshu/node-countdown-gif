@@ -5,8 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Using Node.js to generate countdown gifs</title>
+        <!-- <link rel="stylesheet" href="css/main.css"> -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-mvYjhBJXQ9VlNETV/xXShy849GsBHnKzVVudnMOcWUVM/6Nd2ksj8VNng5f8ylyX" crossorigin="anonymous">    <body>
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-mvYjhBJXQ9VlNETV/xXShy849GsBHnKzVVudnMOcWUVM/6Nd2ksj8VNng5f8ylyX" crossorigin="anonymous">
+<body>
         <div class="container">
             <div class="page-header">
                 <h1>Gif countdown generator <small>Using node</small></h1>
@@ -28,17 +30,17 @@
             
             <h2>Generate Examples <small>Triggers a download</small></h2>
             <ul>
-                <li>Basic: <a href="/generate?time=2018-09-24T20:35&name=ex1">/generate?time=2018-09-24T20:35</a></li>
-                <li>Custom dimensions: <a href="/generate?time=2018-09-24T20:35&width=300&height=150&name=ex2">/generate?time=2018-09-24T20:35&width=300&height=150</a></li>
-                <li>Custom colours: <a href="/generate?time=2018-09-24T20:35&bg=028900&color=adff00&name=ex3">/generate?time=2018-09-24T20:35&bg=028900&color=adff00</a></li>
-                <li>Custom name &amp; frames: <a href="/generate?time=2018-09-24T20:35&name=awesome-gif&frames=20&name=ex4">/generate?time=2018-09-24T20:35&name=awesome-gif&frames=20</a></li>
+                <li>Basic: <a href="/generate?time=2019-09-24T20:35&name=ex1">/generate?time=2019-09-24T20:35</a></li>
+                <li>Custom dimensions: <a href="/generate?time=2019-09-24T20:35&width=300&height=150&name=ex2">/generate?time=2019-09-24T20:35&width=300&height=150</a></li>
+                <li>Custom colours: <a href="/generate?time=2019-09-24T20:35&bg=028900&color=adff00&name=ex3">/generate?time=2019-09-24T20:35&bg=028900&color=adff00</a></li>
+                <li>Custom name &amp; frames: <a href="/generate?time=2019-09-24T20:35&name=awesome-gif&frames=20&name=ex4">/generate?time=2019-09-24T20:35&name=awesome-gif&frames=20</a></li>
             </ul>
             
             <h2>Serve Examples <small>Display in an image tag</small></h2>
-            <div class="row">
+             <div class="row">
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="/serve?time=2018-09-24T20:35&name=serve1" alt="basic example">
+                        <img src="/serve?time=2019-09-24T20:35&name=serve1" alt="basic example">
                         <div class="caption">
                             <h3>Basic example</h3>
                             <p>Simple example setting only the date + time.</p>
@@ -47,7 +49,7 @@
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="/serve?time=2018-09-24T20:35&bg=028900&color=adff00&name=serve2" alt="custom colours">
+                        <img src="/serve?time=2019-09-24T20:35&bg=ffff&color=adff00&name=serve2&frames=60&width=400&height=150" alt="custom colours">
                         <div class="caption">
                             <h3>Custom colours</h3>
                             <p>Example setting a custom set of colours.</p>
@@ -56,7 +58,7 @@
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="/serve?time=2018-09-24T20:35&bg=028900&color=adff00&width=200&height=100&name=serve3" alt="custom colours">
+                        <img src="/serve?time=2019-09-24T20:35&bg=282828&color=8888&width=550&height=150&frames=5000&name=serve3" alt="custom colours">
                         <div class="caption">
                             <h3>Custom dimensions</h3>
                             <p>Example setting a custom set of dimensions.</p>
@@ -64,10 +66,15 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="container">
+                <h1 id="head">Countdown to my birthday:</h1>
+                <ul>
+                     <img src="/serve?time=2019-09-24T20:35&bg=ffd54f&color=333&width=550&height=150&frames=30&name=birthday" alt="custom colours">
+                </ul>
+            </div>
             <p>Under the hood the app uses:</p>
             <ul>
-                <li><a href="https://nodejs.org/en/blog/release/v6.0.0/">Node.js</a></li>
+                <li><a href="https://nodejs.org/en/blog/release/v8.11.2/">Node.js</a></li>
                 <li><a href="http://expressjs.com/">Express</a></li>
                 <li><a href="https://github.com/Automattic/node-canvas">Node-canvas</a></li>
                 <li><a href="https://github.com/eugeneware/gifencoder">Gifencoder</a></li>
