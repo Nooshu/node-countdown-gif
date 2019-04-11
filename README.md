@@ -25,9 +25,18 @@ These trigger a download. Change the URL from `/generate` to `/serve` when used 
 
 Tested with and designed for:
 
-* node 6.0.0
+* node 8.11.2
 * cairo 1.8.6
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) & [GNU GENERAL PUBLIC LICENSE](LICENSE.md)
+
+## Contributors
+
+
+- **Saurabh Kashyap** - *War Craftman* - [saurabharch](https://github.com/saurabharch)<br/>
+- **Matt Hobbs** - *Nooshu* - [Nooshu](https://github.com/Nooshu) 
+
+
+Also see a list of contributors here: [Contributors on this repository](https://github.com/saurabharch/animinated-date-gif/graphs/contributors)
