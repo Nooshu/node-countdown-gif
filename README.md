@@ -30,13 +30,13 @@ Tested with and designed for:
 
 ## License
 
-[MIT](LICENSE) & [GNU GENERAL PUBLIC LICENSE](LICENSE.md)
+[MIT](LICENSE) & [GNU GENERAL PUBLIC LICENSE 3.0](LICENSE.md)
 
 ## Contributors
 
 
-- **Saurabh Kashyap** - *War Craftman* - [saurabharch](https://github.com/saurabharch)<br/>
-- **Matt Hobbs** - *Nooshu* - [Nooshu](https://github.com/Nooshu) 
+- **Saurabh Kashyap** - *War Craftman* - [saurabharch](https://github.com/saurabharch) .<br/>
+- **Matt Hobbs** - *Nooshu* - [Nooshu](https://github.com/Nooshu) .
 
 
-Also see a list of contributors here: [Contributors on this repository](https://github.com/saurabharch/animinated-date-gif/graphs/contributors)
+Also see a list of contributors here: [Contributors on this repository](https://github.com/raindigi/animinated-date-gif/graphs/contributors)
