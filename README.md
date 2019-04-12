@@ -1,4 +1,6 @@
 # Gif countdown generator
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fraindigi%2Faniminated-date-gif.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fraindigi%2Faniminated-date-gif?ref=badge_shield)
+
 
 The very simple app I have created allows you to generate a countdown timer animated gif depending on the URL parameters you provide. [View demo](https://date-gif.herokuapp.com/).
 
@@ -31,6 +33,9 @@ Tested with and designed for:
 ## License
 
 [MIT](LICENSE) & [GNU GENERAL PUBLIC LICENSE 3.0](LICENSE.md)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fraindigi%2Faniminated-date-gif.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fraindigi%2Faniminated-date-gif?ref=badge_large)
 
 ## Contributors
 
