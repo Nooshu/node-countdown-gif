@@ -1,6 +1,6 @@
 # Gif countdown generator
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fraindigi%2Faniminated-date-gif.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fraindigi%2Faniminated-date-gif?ref=badge_shield)[![Open Source Helpers](https://www.codetriage.com/raindigi/animinated-date-gif/badges/users.svg)](https://www.codetriage.com/raindigi/animinated-date-gif) 
-[![Version npm](https://img.shields.io/npm/v/animinated-date-gif.svg?style=flat-square)](https://www.npmjs.com/package/animinated-date-gif)[![Build Status](https://img.shields.io/travis/raindigi/animinated-date-gif/master.svg?style=flat-square)](https://travis-ci.org/raindigi/animinated-date-gif)[![Dependencies](https://img.shields.io/saurabh/raindigi/animinated-date-gif.svg?style=flat-square)](https://david-dm.org/godaddy/svgs)[![Coverage Status](https://img.shields.io/coveralls/godaddy/svgs/master.svg?style=flat-square)](https://coveralls.io/r/raindigi/animinated-date-gif?branch=master)
+[![Version npm](https://img.shields.io/npm/v/animinated-date-gif.svg?style=flat-square)](https://www.npmjs.com/package/animinated-date-gif)[![Build Status](https://img.shields.io/travis/raindigi/animinated-date-gif/master.svg?style=flat-square)](https://travis-ci.org/raindigi/animinated-date-gif)[![Coverage Status](https://img.shields.io/coveralls/godaddy/svgs/master.svg?style=flat-square)](https://coveralls.io/r/raindigi/animinated-date-gif?branch=master)
 
 ![](logo.png)
 <br/>
