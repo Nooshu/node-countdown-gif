@@ -1,6 +1,6 @@
 # Gif countdown generator
 
-The very simple app I have created allows you to generate a countdown timer animated gif depending on the URL parameters you provide. [View demo](https://date-gif.herokuapp.com/).
+The very simple app I have created allows you to generate a countdown timer animated gif depending on the URL parameters you provide. [View demo](https://date-gif.herokuapp.com/). Now no longer maintained.
 
 ## URL Parameters (*required)
 
